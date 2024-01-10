@@ -1,4 +1,4 @@
-use ferris_says::say;
+use ferris_says::say as ferris_say;
 use std::io::{stdout, BufWriter};
 
 fn main() {
@@ -7,5 +7,5 @@ fn main() {
   let width = message.chars().count();
 
   let mut writer = BufWriter::new(stdout.lock());
-  say(&message, width, &mut writer).unwrap();
+  ferris_say(&message, width, &mut writer).unwrap();
 }

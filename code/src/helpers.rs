@@ -1,10 +1,17 @@
-use std::{io::stdin, str::FromStr};
+use std::{ops::Add, str::FromStr, any::type_name, io::stdin};
 
-pub fn text_to_number<T: FromStr>(text: String) -> Option<T> {
-  return match text.trim().parse::<T>() {
+/// Custom trait to basically represent *any numeric type*:
+/// * Can be passed onto the add operation (`+`)
+/// * Can be parsed from a string (needed for the `core::str::parse` function)
+pub trait Numeric: Add + FromStr {}
+impl<T: Add + FromStr> Numeric for T {}
+
+pub fn text_to_number<T: Numeric>(text: String) -> Option<T> {
+  let clean_text = text.trim();
+  return match clean_text.parse::<T>() {
     Ok(number) => Some(number),
     Err(_) => {
-      println!("[ERROR] could not parse to a number (NaN)");
+      println!("[ERROR] could not parse value \"{}\" into a {} (NaN)", clean_text, type_name::<T>());
       return None;
     },
   };

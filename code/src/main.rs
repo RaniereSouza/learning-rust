@@ -9,9 +9,13 @@ fn main() -> ExitCode {
     Some(input) => {
       return match text_to_number::<i32>(input) {
         Some(number) => {
-          let result = fibonacci_rec(number.clone());
-          println!("the #{} Fibonacci number is {}", number, result);
-          return ExitCode::SUCCESS;
+          match fibonacci_rec(number.clone()) {
+            Some(result) => {
+              println!("the #{} Fibonacci number is {}", number, result);
+              return ExitCode::SUCCESS;
+            },
+            None => ExitCode::FAILURE,
+          }
         },
         None => ExitCode::FAILURE,
       };

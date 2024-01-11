@@ -19,4 +19,7 @@ run_main: $(CODE_DIR)/main.rs ## Build and run the main.rs file
 clean_build: ## Clean the generated build in the target/ directory
 	rm -rf $(BUILD_DIR)/
 
+run_all_unit_tests: ## Run all unit tests defined inside their respective modules
+	cargo test
+
 $(V).SILENT:

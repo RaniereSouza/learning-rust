@@ -11,7 +11,7 @@ pub fn text_to_number<T: Numeric>(text: String) -> Option<T> {
   return match clean_text.parse::<T>() {
     Ok(number) => Some(number),
     Err(_) => {
-      println!("[ERROR] could not parse value \"{}\" into a {} (NaN)", clean_text, type_name::<T>());
+      println!("[ERROR] could not parse value \"{clean_text}\" into a {} (NaN)", type_name::<T>());
       return None;
     },
   };
@@ -22,7 +22,7 @@ pub fn read_line() -> Option<String> {
   return match stdin().read_line(&mut buffer) {
     Ok(_) => Some(buffer),
     Err(error) => {
-      println!("[ERROR] {}", error.to_string());
+      println!("[ERROR] {error}");
       return None;
     },
   };

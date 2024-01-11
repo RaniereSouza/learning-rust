@@ -11,7 +11,7 @@ fn main() -> ExitCode {
         Some(number) => {
           match fibonacci_rec(number.clone()) {
             Some(result) => {
-              println!("the #{} Fibonacci number is {}", number, result);
+              println!("the #{number} Fibonacci number is {result}");
               return ExitCode::SUCCESS;
             },
             None => ExitCode::FAILURE,

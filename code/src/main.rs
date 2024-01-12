@@ -1,9 +1,9 @@
-use std::process::ExitCode;
+use std::{process::ExitCode, fmt::Display};
 
 mod helpers; use helpers::{read_line, text_to_number};
 mod fibonacci; use fibonacci::fibonacci_rec;
 
-fn log_err_return_failure<T>(res: Result<T, String>) -> ExitCode {
+fn log_err_return_failure<T, E: Display>(res: Result<T, E>) -> ExitCode {
   println!("{}", res.err().unwrap()); ExitCode::FAILURE
 }
 

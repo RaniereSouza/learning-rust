@@ -1,13 +1,14 @@
-pub fn fibonacci_rec(n: i32) -> Option<i32> {
+pub fn fibonacci_rec(n: i32) -> Result<i32, String> {
   return match n {
-    x if x < 0 => {
-      println!("[ERROR] argument for Fibonacci should be a positive integer, received {x}");
-      return None;
-    },
-    0 | 1 => Some(1),
+    x if x < 0 => Err(format!(
+      "[ERROR] argument for Fibonacci should be a positive integer, received {x}"
+    )),
+    0 | 1 => Ok(1),
     _ => match (fibonacci_rec(n - 1), fibonacci_rec(n - 2)) {
-      (a, b) if a.is_none() || b.is_none() => None,
-      (a, b) => Some(a.unwrap() + b.unwrap()),
+      (a, b) if a.is_err() || b.is_err() => Err(
+        "[ERROR] Unknown error in Fibonacci recursion".to_string()
+      ),
+      (a, b) => Ok(a.unwrap() + b.unwrap()),
     },
   };
 }
@@ -24,8 +25,8 @@ mod tests {
     let result1 = fibonacci_rec(input1);
     let result2 = fibonacci_rec(input2);
     // Assert
-    assert_eq!(result1, Some(1));
-    assert_eq!(result2, Some(1));
+    assert_eq!(result1, Ok(1));
+    assert_eq!(result2, Ok(1));
   }
 
   #[test]
@@ -38,10 +39,10 @@ mod tests {
     let result3 = fibonacci_rec(input3);
     let result4 = fibonacci_rec(input4);
     // Assert
-    assert_eq!(result1, Some(2));
-    assert_eq!(result2, Some(8));
-    assert_eq!(result3, Some(55));
-    assert_eq!(result4, Some(377));
+    assert_eq!(result1, Ok(2));
+    assert_eq!(result2, Ok(8));
+    assert_eq!(result3, Ok(55));
+    assert_eq!(result4, Ok(377));
   }
 
   #[test]
@@ -51,6 +52,9 @@ mod tests {
     // Act
     let result1 = fibonacci_rec(input1);
     // Assert
-    assert_eq!(result1, None);
+    assert_eq!(result1, Err(
+      "[ERROR] argument for Fibonacci should be a positive integer, received -5"
+      .to_string()
+    ));
   }
 }

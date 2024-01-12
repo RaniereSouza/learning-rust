@@ -7,14 +7,8 @@ fn main() -> ExitCode {
   println!("insert an integer n to get the nth Fibonacci number: ");
   let Some(input) = read_line() else { return ExitCode::FAILURE };
   let Some(number) = text_to_number::<i32>(input) else { return ExitCode::FAILURE };
-  match fibonacci_rec(number) {
-    Ok(result) => {
-      println!("the #{number} Fibonacci number is {}", result);
-      return ExitCode::SUCCESS;
-    },
-    Err(error_message) => {
-      println!("{error_message}");
-      return ExitCode::FAILURE;
-    },
-  };
+  let result = fibonacci_rec(number);
+  if result.is_err() { println!("{}", result.err().unwrap()); return ExitCode::FAILURE };
+  println!("the #{number} Fibonacci number is {}", result.unwrap());
+  return ExitCode::SUCCESS;
 }

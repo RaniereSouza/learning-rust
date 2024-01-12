@@ -53,8 +53,7 @@ mod tests {
     let result1 = fibonacci_rec(input1);
     // Assert
     assert_eq!(result1, Err(
-      "[ERROR] argument for Fibonacci should be a positive integer, received -5"
-      .to_string()
+      "[ERROR] argument for Fibonacci should be a positive integer, received -5".to_string()
     ));
   }
 }

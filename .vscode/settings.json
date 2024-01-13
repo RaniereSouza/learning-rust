@@ -11,5 +11,8 @@
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.fontFamily": "ShureTechMono Nerd Font Mono, Terminess Nerd Font Mono, Fira Code",
   "terminal.integrated.fontSize": 27,
-  "makefile.makefilePath": "./code/Makefile"
+  "makefile.makefilePath": "./code/Makefile",
+  "rust-analyzer.linkedProjects": [
+    "./code/Cargo.toml"
+  ]
 }

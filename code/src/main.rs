@@ -10,15 +10,12 @@ fn log_err_return_failure<T, E: Display>(res: Result<T, E>) -> ExitCode {
 fn main() -> ExitCode {
   println!("insert an integer n to get the nth Fibonacci number: ");
 
-  let input = read_line();
-  if input.is_err() { return log_err_return_failure(input) };
-
-  let number = text_to_number::<i32>(input.unwrap());
-  if number.is_err() { return log_err_return_failure(number) };
-
-  let result = fibonacci_rec(number.clone().unwrap());
+  let mut input: Option<i32> = None;
+  let result = read_line()
+    .and_then(text_to_number)
+    .and_then(|parsed_number| { input = Some(parsed_number); fibonacci_rec(parsed_number) });
   if result.is_err() { return log_err_return_failure(result) };
 
-  println!("the #{} Fibonacci number is {}", number.unwrap(), result.unwrap());
+  println!("the #{} Fibonacci number is {}", input.unwrap(), result.unwrap());
   return ExitCode::SUCCESS;
 }

@@ -56,7 +56,7 @@ mod tests {
   }
 
   #[test]
-  fn should_read_correctly_from_input() {
+  fn should_correctly_read_line_from_input() {
     // Arrange
     let input1 = Cursor::new("Hello, World!");
     let input2 = Cursor::new("Hello, Rust!\nHello World!\n");

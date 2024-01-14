@@ -6,8 +6,8 @@ use std::{ops::Add, str::FromStr, any::type_name, io::BufRead, fmt::Debug};
 pub trait Numeric: Add + FromStr {}
 impl<T: Add + FromStr> Numeric for T {}
 
-pub fn text_to_number<T>(text: String)  -> Result<T, String> where
-  T: Numeric, <T as FromStr>::Err: Debug,
+pub fn text_to_number<T>(text: String) -> Result<T, String>
+  where T: Numeric, <T as FromStr>::Err: Debug,
 {
   return match text.parse::<T>() {
     Ok(number) => Ok(number),

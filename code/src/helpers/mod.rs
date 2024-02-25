@@ -21,7 +21,10 @@ pub fn text_to_number<T>(text: String) -> Result<T, String>
 pub fn read_line_from<R: BufRead>(stream: &mut R) -> Result<String, String> {
   let mut buffer = String::new();
   return match stream.read_line(&mut buffer) {
-    Ok(_) => Ok(format!("{}", buffer.trim())),
+    Ok(num_bytes) => {
+      if num_bytes > 0 { return Ok(format!("{}", buffer.trim())); }
+      Err("[ERROR] could not read input content: end of buffer".to_string())
+    },
     Err(error) => Err(format!(
       "[ERROR] could not read input content:\n{:?}", error,
     )),

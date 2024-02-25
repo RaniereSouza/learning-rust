@@ -18,7 +18,7 @@ pub fn text_to_number<T>(text: String) -> Result<T, String>
   };
 }
 
-pub fn read_line_from<R: BufRead>(mut stream: R) -> Result<String, String> {
+pub fn read_line_from<R: BufRead>(stream: &mut R) -> Result<String, String> {
   let mut buffer = String::new();
   return match stream.read_line(&mut buffer) {
     Ok(_) => Ok(format!("{}", buffer.trim())),

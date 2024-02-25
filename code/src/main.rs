@@ -6,10 +6,10 @@ mod fibonacci; use fibonacci::fibonacci_rec;
 fn main() -> ExitCode {
   println!("insert an integer n to get the nth Fibonacci number: ");
 
-  let stdin_with_readline = BufReader::new(stdin());
+  let mut stdin_bufreader = BufReader::new(stdin());
   let mut input: Option<i32> = None;
   let result =
-    read_line_from(stdin_with_readline)
+    read_line_from(&mut stdin_bufreader)
     .and_then(text_to_number)
     .and_then(|parsed_number| {
       input = Some(parsed_number); fibonacci_rec(parsed_number)

@@ -1,3 +1,6 @@
+SHELL := /bin/bash
+MAKEFLAGS += --no-print-directory
+
 CODE_DIR := src
 BUILD_DIR := target
 

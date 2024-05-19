@@ -23,3 +23,7 @@ RUN apt-get install libssl-dev -y
 RUN cargo install --locked wasm-bindgen-cli
 # installing cargo-watch as fallback for trunk watch mode
 RUN cargo install cargo-watch
+
+# installing X11 graphic library for Slint to use as fallback in place of Wayland
+# (this is probably a specific problem for Slint on WSL Ubuntu, but registering it here anyway)
+RUN apt-get install libxkbcommon-x11-0

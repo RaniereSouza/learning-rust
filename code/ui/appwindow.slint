@@ -1,0 +1,51 @@
+import { Button, LineEdit } from "std-widgets.slint";
+export component AppWindow inherits Window {
+  title: "First successful window created!";
+  width: 800px;
+  height: 450px;
+  default-font-size : 16px;
+
+  in property <int> count;
+
+  callback count-button-clicked;
+  callback text-input-enter-pressed(string);
+
+  GridLayout {
+    width: 400px;
+    height: 225px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    spacing: 8px;
+
+    Row {
+      Text {
+        text: "Hello, Slint!";
+        horizontal-alignment: center;
+        font-size: 24px;
+        color: green;
+      }
+    }
+  
+    Row {
+      Button {
+        primary: true;
+        text: "CLICK COUNT: \{root.count}";
+        clicked => {
+          root.count-button-clicked();
+        }
+      }
+    }
+
+    Row {
+      LineEdit {
+        placeholder-text: "Type something here...";
+        accepted => {
+          root.text-input-enter-pressed(self.text);
+        }
+      }
+    }
+  }
+
+}

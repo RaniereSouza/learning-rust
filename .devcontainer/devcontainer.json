@@ -29,6 +29,7 @@
 			"extensions": [
 				"rust-lang.rust-analyzer",
 				"tamasfe.even-better-toml",
+				"slint.slint",
 				"ms-vscode.makefile-tools",
 				"shd101wyy.markdown-preview-enhanced",
 				"pkief.material-icon-theme",

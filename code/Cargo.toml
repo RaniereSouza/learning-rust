@@ -3,3 +3,10 @@ name = "learning-rust"
 version = "0.0.0"
 edition = "2021"
 rust-version = "1.71"
+build = "build.rs"
+
+[dependencies]
+slint = "1.6"
+
+[build-dependencies]
+slint-build = "1.6"

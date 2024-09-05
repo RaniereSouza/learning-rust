@@ -21,6 +21,8 @@ help:
 	echo "To document a command, just add a ## comment at the end of the target's line, after the prerequisites"
 #<< Helper definition to print all documented commands [END]
 
+.PHONY: run_main clean_build run_all_unit_tests
+
 run_main: $(CODE_DIR)/main.rs ## Build and run the main.rs file
 	$(ENV_VARS) cargo run
 

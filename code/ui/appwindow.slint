@@ -1,18 +1,18 @@
 import { Button, LineEdit } from "std-widgets.slint";
 export component AppWindow inherits Window {
-  title: "First successful window created!";
+  title: "Fibonacci Calculator";
   width: 800px;
   height: 450px;
   default-font-size : 16px;
 
-  in property <int> count;
+  in-out property <string> result-success;
+  in-out property <string> result-error;
 
-  callback count-button-clicked;
-  callback text-input-enter-pressed(string);
+  callback calculate-fibonacci(string);
 
   GridLayout {
-    width: 400px;
-    height: 225px;
+    width: 450px;
+    height: root.result-success != "" ? 225px + 48px : 225px;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 12px;
@@ -21,29 +21,58 @@ export component AppWindow inherits Window {
 
     Row {
       Text {
-        text: "Hello, Slint!";
+        text: "Fibonacci Calculator";
         horizontal-alignment: center;
         font-size: 24px;
         color: green;
       }
     }
-  
+
     Row {
-      Button {
-        primary: true;
-        text: "CLICK COUNT: \{root.count}";
-        clicked => {
-          root.count-button-clicked();
+      VerticalLayout {
+        Text {
+          height: 18px;
+          text: "Insert an integer n to get the nth Fibonacci number:";
+        }
+
+        inputField := LineEdit {
+          placeholder-text: "(Type integer here)";
+          edited => {
+            root.result-success = "";
+            root.result-error = "";
+          }
+          accepted => {
+            root.calculate-fibonacci(self.text);
+            self.clear-focus();
+          }
+        }
+
+        if root.result-error != "" : errorText := Text {
+          height: 18px;
+          text: root.result-error;
+          color: red;
         }
       }
     }
 
     Row {
-      LineEdit {
-        placeholder-text: "Type something here...";
-        accepted => {
-          root.text-input-enter-pressed(self.text);
+      Button {
+        primary: true;
+        text: "CALCULATE";
+        clicked => {
+          root.calculate-fibonacci(inputField.text);
+          inputField.clear-focus();
         }
+      }
+    }
+
+    Rectangle {
+      visible: root.result-success != "" ? true : false;
+      height: root.result-success != "" ? 48px : 0px;
+
+      if root.result-success != "" : resultDisplay := Text {
+        text: root.result-success;
+        color: blue;
       }
     }
   }

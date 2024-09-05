@@ -1,4 +1,6 @@
-FROM mcr.microsoft.com/devcontainers/rust:bullseye
+# at the date of this comment (2024-09-03),
+# Rust 1.79 is the most recent version available in the Microsoft devcontainers registry
+FROM mcr.microsoft.com/devcontainers/rust:1.0.14-bullseye
 
 # the `cargo generate` command accused that $USER was missing
 ENV USER=root

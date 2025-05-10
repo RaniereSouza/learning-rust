@@ -2,7 +2,7 @@
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.iconTheme": "material-icon-theme",
   "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
-  "editor.fontSize": 24,
+  "editor.fontSize": 22,
   "editor.fontLigatures": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
@@ -10,7 +10,7 @@
   "terminal.integrated.cursorStyle": "underline",
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.fontFamily": "ShureTechMono Nerd Font Mono, Terminess Nerd Font Mono, Fira Code",
-  "terminal.integrated.fontSize": 27,
+  "terminal.integrated.fontSize": 25,
   "makefile.makefilePath": "./code/Makefile",
   "rust-analyzer.linkedProjects": [
     "./code/Cargo.toml"

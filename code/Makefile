@@ -2,9 +2,10 @@ SHELL := /bin/bash
 MAKEFLAGS += --no-print-directory
 
 RUST_ENV_VARS := RUST_BACKTRACE=full
-# Unsetting the WAYLAND_DISPLAY env var to force Slint to use X11 to run graphics
-# (Specific workaround to make Slint run on WSL Ubuntu)
-ENV_VARS := WAYLAND_DISPLAY= $(RUST_ENV_VARS)
+# Unsetting the WAYLAND_DISPLAY env var could force Slint to use X11 to run
+# graphics if needed (Specific workaround to make Slint run on WSL in the past)
+# ENV_VARS := WAYLAND_DISPLAY='' $(RUST_ENV_VARS)
+ENV_VARS := $(RUST_ENV_VARS)
 
 CODE_DIR := src
 BUILD_DIR := target

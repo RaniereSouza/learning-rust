@@ -12,7 +12,7 @@ export component AppWindow inherits Window {
 
   GridLayout {
     width: 450px;
-    height: root.result-success != "" ? 225px + 48px : 225px;
+    height: root.result-success != "" ? 237px + 48px : 237px;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 12px;
@@ -31,7 +31,7 @@ export component AppWindow inherits Window {
     Row {
       VerticalLayout {
         Text {
-          height: 18px;
+          height: 24px;
           text: "Insert an integer n to get the nth Fibonacci number:";
         }
 
@@ -48,7 +48,7 @@ export component AppWindow inherits Window {
         }
 
         if root.result-error != "" : errorText := Text {
-          height: 18px;
+          height: 24px;
           text: root.result-error;
           color: red;
         }
